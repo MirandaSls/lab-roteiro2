@@ -1,0 +1,17 @@
+# Java
+*.class
+target/
+out/
+
+# Maven
+java/websocket/lib/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Sistema
+Thumbs.db
+desktop.ini
