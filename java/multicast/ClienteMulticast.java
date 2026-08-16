@@ -6,15 +6,15 @@ public class ClienteMulticast {
 
     public static void main(String[] args) throws IOException {
         String grupoMulticast = "230.0.0.1";
-        int porta = 4446 + OFFSET; // 4500
+        // Base 4646 (nao 4446): 4500 e reservada pelo Windows (IPsec NAT-T). 4646 + OFFSET(54) = 4700.
+        int porta = 4646 + OFFSET; // 4700
 
         try (MulticastSocket socket = new MulticastSocket(porta)) {
             InetAddress grupo = InetAddress.getByName(grupoMulticast);
             InetSocketAddress endpointGrupo = new InetSocketAddress(grupo, porta);
 
-            // Em Wi-Fi corporativa/VPN o multicast costuma ser bloqueado. Para testar
-            // servidor e cliente na MESMA maquina, use a interface de loopback:
-            // NetworkInterface interfaceRede = NetworkInterface.getByInetAddress(InetAddress.getLoopbackAddress());
+            // Inscreve-se no grupo pela interface de rede local. Se estiver em Wi-Fi corporativa/VPN
+            // que bloqueia multicast, veja a secao 6.5 do roteiro (troubleshooting).
             NetworkInterface interfaceRede = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
 
             socket.joinGroup(endpointGrupo, interfaceRede);

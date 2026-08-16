@@ -6,10 +6,17 @@ public class ServidorMulticast {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         String grupoMulticast = "230.0.0.1";
-        int porta = 4446 + OFFSET; // 4500
+        // Base 4646 (nao 4446): a porta 4500 e reservada pelo Windows (IPsec NAT-T) e o multicast
+        // e silenciosamente descartado nela. 4646 + OFFSET(54) = 4700.
+        int porta = 4646 + OFFSET; // 4700
 
         InetAddress grupo = InetAddress.getByName(grupoMulticast);
         try (DatagramSocket socket = new DatagramSocket()) {
+            // Fixa a interface de saida do multicast na rede local desta maquina. Sem isso, no
+            // Windows o SO pode escolher outra interface e o cliente local nao recebe nada.
+            NetworkInterface interfaceRede = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
+            socket.setOption(StandardSocketOptions.IP_MULTICAST_IF, interfaceRede);
+
             int contador = 1;
             System.out.println("[Multicast] Enviando avisos para o grupo " + grupoMulticast + ":" + porta);
             while (contador <= 5) {

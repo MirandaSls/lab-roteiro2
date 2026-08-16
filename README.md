@@ -8,7 +8,7 @@ Mesmo cenário (central de comunicação da turma) implementado com **4 protocol
 |---|---|---|---|
 | A | TCP | 5054 | Aluno pergunta ao monitor e recebe resposta (confiável, 1-a-1) |
 | B | UDP | 5055 | Mesmo pedido, sem garantia de entrega |
-| C | Multicast | 4500 | Professor avisa todos os alunos do grupo de uma vez |
+| C | Multicast | 4700 | Professor avisa todos os alunos do grupo de uma vez |
 | D | WebSocket | 8941 (Java) / 8942 (Python) | Mural de avisos em tempo real |
 
 ## Estrutura
