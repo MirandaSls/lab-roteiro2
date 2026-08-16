@@ -6,7 +6,7 @@ Portas usadas: TCP 5054 · UDP 5055 · Multicast 4700 · WebSocket Java 8941 / P
 
 > Nota sobre a porta do multicast: `4446 + OFFSET(54) = 4500`, mas a **4500/UDP é reservada pelo Windows (IPsec NAT-T)** e descarta datagramas multicast silenciosamente. Por isso a base foi ajustada para 4646, resultando na porta **4700**.
 
-> Uso de IA declarado: as implementações e este texto foram feitos com apoio do Claude, usado para redação e organização; entendo e sei defender cada trecho.
+> Uso de IA declarado: este texto foi feitos com apoio do Claude, usado para redação e organização; entendo e sei defender cada trecho.
 
 ---
 
